@@ -2,11 +2,12 @@ import Timer from "./Timer.tsx";
 import {FC, memo, useCallback, useEffect, useState} from "react";
 import {TimerModel, WorkTimeCounterData} from "../models/timer.model.ts";
 import {Box} from "@mui/material";
+import {v4 as uuidv4} from 'uuid';
 
 const ZERO_TIMER: TimerModel = {
     name: "Timer 1",
     time: 0,
-    id: crypto.randomUUID()
+    id: uuidv4()
 }
 
 const TimerManager: FC = () => {
