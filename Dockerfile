@@ -4,6 +4,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 COPY src ./src
 COPY public ./public
+COPY eslint.config.js index.html tsconfig.app.json tsconfig.json tsconfig.node.json vite.config.ts ./
 RUN npm run build:prod
 
 FROM nginx:1.27.3
