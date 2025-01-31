@@ -1,11 +1,13 @@
 import './App.css'
+import {Box} from "@mui/material";
+import TimerManager from "./components/TimerManager.tsx";
 
-function App() {
-  return (
+const App = () => (
     <>
-      Hello World!
+        <Box className="content">
+            <TimerManager/>
+        </Box>
     </>
-  )
-}
+);
 
 export default App
