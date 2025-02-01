@@ -2,6 +2,7 @@ FROM node:22.11.0 as builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
+COPY .git ./.git
 COPY src ./src
 COPY public ./public
 COPY eslint.config.js index.html tsconfig.app.json tsconfig.json tsconfig.node.json vite.config.ts build.helper.mjs ./
