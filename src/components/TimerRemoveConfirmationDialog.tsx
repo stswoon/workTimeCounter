@@ -13,11 +13,9 @@ const TimerRemoveConfirmationDialog: FC<TimerRemoveConfirmationDialogProps> = (p
             <Dialog
                 open={props.open}
                 onClose={() => props.onClose(false)}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
+                    <DialogContentText>
                         Are you sure you want to remove timer <b>{props.timerName}</b>?
                     </DialogContentText>
                 </DialogContent>

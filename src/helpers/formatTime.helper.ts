@@ -1,4 +1,4 @@
-export const formatTime = (time: number) => {
+export const formatTime = (time: number): string => {
     let t = Math.abs(time);
     const d = Math.floor(t / (8 * 60));
     t = t - d * 8 * 60;

@@ -1,4 +1,4 @@
-export interface WorkTimeCounterData {
+export interface WorkTimeCounterDataModel {
     timers: TimerModel[];
 }
 

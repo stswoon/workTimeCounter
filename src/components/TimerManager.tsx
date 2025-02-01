@@ -1,9 +1,10 @@
 import Timer from "./Timer.tsx";
 import {FC, memo, useCallback, useEffect, useMemo, useState} from "react";
-import {TimerModel, WorkTimeCounterData} from "../models/timer.model.ts";
+import {TimerModel} from "../models/timer.model.ts";
 import {Box, Button, Divider, Stack} from "@mui/material";
 import {v4 as uuidv4} from 'uuid';
 import {randomColor} from "../helpers/uniqueTimerName.helper.ts";
+import {getWorkTimeCounterData, saveWorkTimeCounterData} from "../helpers/localStorage.helper.ts";
 
 
 const createTimer = (): TimerModel => {
@@ -16,19 +17,12 @@ const createTimer = (): TimerModel => {
 
 const MAX_TIMERS = 5;
 
+
 const TimerManager: FC = () => {
     const [timerModels, setTimerModels] = useState<TimerModel[]>([]);
 
     useEffect(() => {
-        let workTimeCounterData: WorkTimeCounterData | undefined = undefined;
-        try {
-            const dataAsString = localStorage.getItem("workTimeCounterData");
-            if (dataAsString) {
-                workTimeCounterData = JSON.parse(dataAsString);
-            }
-        } catch (e) {
-            console.error("Failed to load data from localStorage: ", e);
-        }
+        let workTimeCounterData = getWorkTimeCounterData();
         if (!workTimeCounterData) {
             workTimeCounterData = {timers: [createTimer()]};
         }
@@ -37,7 +31,7 @@ const TimerManager: FC = () => {
 
     const saveToLocalStorage = useCallback((timerModels: TimerModel[]) => {
         const workTimeCounterData = {timers: timerModels};
-        localStorage.setItem("workTimeCounterData", JSON.stringify(workTimeCounterData));
+        saveWorkTimeCounterData(workTimeCounterData);
     }, []);
 
     const setTimerName = useCallback((id: string, name: string) => {
@@ -70,7 +64,6 @@ const TimerManager: FC = () => {
         saveToLocalStorage(newTimerModels);
     }, [saveToLocalStorage, timerModels]);
 
-
     const addNewTimer = useCallback(() => {
         const newTimerModels = [...timerModels, createTimer()];
         setTimerModels(newTimerModels);
@@ -82,8 +75,7 @@ const TimerManager: FC = () => {
     }, [timerModels.length])
 
     return (
-        <Stack className="taTimerManager" spacing={4}
-               divider={<Divider orientation="horizontal" flexItem/>}>
+        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>}>
             {timerModels.map(({id, name, time}) => (
                 <Timer key={id} id={id} name={name} time={time}
                        onNameChange={(name) => setTimerName(id, name)}
@@ -94,7 +86,8 @@ const TimerManager: FC = () => {
             {displayAddButton &&
                 <Box sx={{display: "flex", justifyContent: "center"}}>
                     <Button variant="outlined" onClick={() => addNewTimer()}>Add Timer</Button>
-                </Box>}
+                </Box>
+            }
         </Stack>
     )
 };

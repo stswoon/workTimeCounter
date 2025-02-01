@@ -37,15 +37,18 @@ const Timer: FC<TimerProps> = (props) => {
     }, [props]);
 
     return (
-        <Stack className={'taTimer_' + props.id} spacing={1}>
-            <Stack direction='row' spacing={0} sx={{justifyContent: " space-between"}}>
+        <Stack spacing={1}>
+            <Stack direction='row' spacing={0} sx={{justifyContent: "space-between"}}>
                 <TextField variant="outlined" placeholder='Timer name' value={props.name} sx={{width: '180px'}}
                            onChange={(event) => props.onNameChange(event.target.value)}/>
+
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
-                    <Typography variant={"h5"} color={displayTimeColor} noWrap
-                                align={"center"}>{displayTime}</Typography>
+                    <Typography variant={"h5"} color={displayTimeColor} noWrap>{displayTime}</Typography>
                 </Box>
-                <Button variant="outlined" color="error" onClick={() => setDialogOpen(true)}>X</Button>
+
+                <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                    <Button variant="outlined" color="error" onClick={() => setDialogOpen(true)}>X</Button>
+                </Box>
             </Stack>
 
             <Stack direction='row' spacing={6}>

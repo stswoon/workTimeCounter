@@ -1,13 +1,10 @@
-import './App.css'
-import {Box} from "@mui/material";
 import TimerManager from "./components/TimerManager.tsx";
+import {AppLayout} from "./components/AppLayout.tsx";
 
 const App = () => (
-    <>
-        <Box className="content">
-            <TimerManager/>
-        </Box>
-    </>
+    <AppLayout>
+        <TimerManager/>
+    </AppLayout>
 );
 
 export default App
