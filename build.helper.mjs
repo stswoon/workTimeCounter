@@ -1,7 +1,8 @@
+//TODO: move to vite
+
 import {execSync} from "child_process";
 import fs from "node:fs";
 
-//TODO: move to vite
 const addCommitToServiceWorker = () => {
     const gitHash = execSync("git rev-parse HEAD").toString().trim();
     let serviceWorkerData = fs.readFileSync("dist/service-worker.js", "utf8");

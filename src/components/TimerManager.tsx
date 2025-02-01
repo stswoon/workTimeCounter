@@ -1,14 +1,20 @@
 import Timer from "./Timer.tsx";
-import {FC, memo, useCallback, useEffect, useState} from "react";
+import {FC, memo, useCallback, useEffect, useMemo, useState} from "react";
 import {TimerModel, WorkTimeCounterData} from "../models/timer.model.ts";
-import {Box} from "@mui/material";
+import {Box, Button, Divider, Stack} from "@mui/material";
 import {v4 as uuidv4} from 'uuid';
+import {randomColor} from "../helpers/uniqueTimerName.helper.ts";
 
-const ZERO_TIMER: TimerModel = {
-    name: "Timer 1",
-    time: 0,
-    id: uuidv4()
+
+const createTimer = (): TimerModel => {
+    return {
+        name: "Timer " + randomColor(),
+        time: 0,
+        id: uuidv4()
+    }
 }
+
+const MAX_TIMERS = 5;
 
 const TimerManager: FC = () => {
     const [timerModels, setTimerModels] = useState<TimerModel[]>([]);
@@ -24,7 +30,7 @@ const TimerManager: FC = () => {
             console.error("Failed to load data from localStorage: ", e);
         }
         if (!workTimeCounterData) {
-            workTimeCounterData = {timers: [ZERO_TIMER]};
+            workTimeCounterData = {timers: [createTimer()]};
         }
         setTimerModels(workTimeCounterData.timers);
     }, []);
@@ -64,8 +70,20 @@ const TimerManager: FC = () => {
         saveToLocalStorage(newTimerModels);
     }, [saveToLocalStorage, timerModels]);
 
+
+    const addNewTimer = useCallback(() => {
+        const newTimerModels = [...timerModels, createTimer()];
+        setTimerModels(newTimerModels);
+        saveToLocalStorage(newTimerModels);
+    }, [saveToLocalStorage, timerModels]);
+
+    const displayAddButton: boolean = useMemo(() => {
+        return timerModels.length < MAX_TIMERS;
+    }, [timerModels.length])
+
     return (
-        <Box className="taTimerManager">
+        <Stack className="taTimerManager" spacing={4}
+               divider={<Divider orientation="horizontal" flexItem/>}>
             {timerModels.map(({id, name, time}) => (
                 <Timer key={id} id={id} name={name} time={time}
                        onNameChange={(name) => setTimerName(id, name)}
@@ -73,7 +91,11 @@ const TimerManager: FC = () => {
                        onRemove={() => removeTimer(id)}
                 />
             ))}
-        </Box>
+            {displayAddButton &&
+                <Box sx={{display: "flex", justifyContent: "center"}}>
+                    <Button variant="outlined" onClick={() => addNewTimer()}>Add Timer</Button>
+                </Box>}
+        </Stack>
     )
 };
 
