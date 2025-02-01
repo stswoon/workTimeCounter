@@ -38,8 +38,9 @@ const Timer: FC<TimerProps> = (props) => {
 
     return (
         <Stack spacing={1}>
-            <Stack direction='row' spacing={0} sx={{justifyContent: "space-between"}}>
-                <TextField variant="outlined" placeholder='Timer name' value={props.name} sx={{width: '180px'}}
+            <Stack direction='row' spacing={1} sx={{justifyContent: "space-between"}}>
+                <TextField size='small' variant="outlined" placeholder='Timer name' value={props.name}
+                           sx={{width: '150px'}}
                            onChange={(event) => props.onNameChange(event.target.value)}/>
 
                 <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
@@ -51,18 +52,16 @@ const Timer: FC<TimerProps> = (props) => {
                 </Box>
             </Stack>
 
-            <Stack direction='row' spacing={6}>
-                <Stack direction='row' spacing={1}>
-                    <Button variant="contained" onClick={() => props.onTimeChange(-60)}>-1h</Button>
-                    <Button variant="contained" onClick={() => props.onTimeChange(-15)}>-15m</Button>
-                    <Button variant="contained" onClick={() => props.onTimeChange(-5)}>-5m</Button>
-                </Stack>
+            <Stack direction='row' spacing={2}>
+                <Button variant="contained" onClick={() => props.onTimeChange(-60)}>-1h</Button>
+                <Button variant="contained" onClick={() => props.onTimeChange(-15)}>-15'</Button>
+                <Button variant="contained" onClick={() => props.onTimeChange(-5)}>-5'</Button>
+            </Stack>
 
-                <Stack direction='row' spacing={1}>
-                    <Button variant="contained" onClick={() => props.onTimeChange(+5)}>+5m</Button>
-                    <Button variant="contained" onClick={() => props.onTimeChange(+15)}>+15m</Button>
-                    <Button variant="contained" onClick={() => props.onTimeChange(+60)}>+1h</Button>
-                </Stack>
+            <Stack direction='row' spacing={2} sx={{justifyContent: "right"}}>
+                <Button variant="contained" onClick={() => props.onTimeChange(+5)}>+5'</Button>
+                <Button variant="contained" onClick={() => props.onTimeChange(+15)}>+15'</Button>
+                <Button variant="contained" onClick={() => props.onTimeChange(+60)}>+1h</Button>
             </Stack>
 
             <TimerRemoveConfirmationDialog open={dialogOpen} timerName={props.name} onClose={handleDialogClose}/>

@@ -15,7 +15,7 @@ const createTimer = (): TimerModel => {
     }
 }
 
-const MAX_TIMERS = 5;
+const MAX_TIMERS = 3;
 
 
 const TimerManager: FC = () => {
@@ -75,7 +75,7 @@ const TimerManager: FC = () => {
     }, [timerModels.length])
 
     return (
-        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>}>
+        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>} width="100%">
             {timerModels.map(({id, name, time}) => (
                 <Timer key={id} id={id} name={name} time={time}
                        onNameChange={(name) => setTimerName(id, name)}
