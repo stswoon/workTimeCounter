@@ -7,7 +7,7 @@ interface AppLayoutProps extends PropsWithChildren {
 
 export const AppLayout: FC<AppLayoutProps> = ({children}) => {
     return <Box sx={{
-        minWidth: "340px",
+        minWidth: "400px",
         width: "100vw",
         maxWidth: "1200px",
         padding: "8px",

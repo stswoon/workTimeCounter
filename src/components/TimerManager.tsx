@@ -27,6 +27,7 @@ const TimerManager: FC = () => {
             workTimeCounterData = {timers: [createTimer()]};
         }
         setTimerModels(workTimeCounterData.timers);
+        saveWorkTimeCounterData(workTimeCounterData);
     }, []);
 
     const saveToLocalStorage = useCallback((timerModels: TimerModel[]) => {
@@ -75,7 +76,7 @@ const TimerManager: FC = () => {
     }, [timerModels.length])
 
     return (
-        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>} width="100%">
+        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>} width="384px">
             {timerModels.map(({id, name, time}) => (
                 <Timer key={id} id={id} name={name} time={time}
                        onNameChange={(name) => setTimerName(id, name)}
