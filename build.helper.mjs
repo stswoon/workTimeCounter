@@ -20,7 +20,9 @@ const addFilesToServiceWorker = () => {
     let staticCacheUrls = ["/", "index.html", "favicon.svg"];
     staticCacheUrls.push(viteManifest["index.html"].file);
     staticCacheUrls.push(...viteManifest["index.html"].css);
+    staticCacheUrls.push(...viteManifest["index.html"].assets);
     staticCacheUrls = staticCacheUrls.map(elem => `"${elem}"`);
+
     let serviceWorkerData = fs.readFileSync("dist/service-worker.js", "utf8");
     serviceWorkerData = serviceWorkerData.replace("\"{STATIC_CACHE_URLS}\"", staticCacheUrls.join(", "));
     fs.writeFileSync("dist/service-worker.js", serviceWorkerData, "utf8");
