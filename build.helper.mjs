@@ -4,7 +4,11 @@ import {execSync} from "child_process";
 import fs from "node:fs";
 
 const addCommitToServiceWorker = () => {
-    const gitHash = execSync("git rev-parse HEAD").toString().trim();
+    let gitHash = process.env.SOURCE_COMMIT; //coolify do not contain .git folder, so https://coolify.io/docs/knowledge-base/environment-variables/
+    if (!gitHash) {
+        gitHash = execSync("git rev-parse HEAD").toString().trim();
+    }
+    console.log("gitHash:", gitHash);
     let serviceWorkerData = fs.readFileSync("dist/service-worker.js", "utf8");
     serviceWorkerData = serviceWorkerData.replace("{GIT_VERSION}", gitHash);
     fs.writeFileSync("dist/service-worker.js", serviceWorkerData, "utf8");
