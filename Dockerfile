@@ -12,5 +12,6 @@ FROM nginx:1.27.3
 COPY --from=builder /app/dist ./usr/share/nginx/html
 COPY start.sh /etc/nginx/
 RUN chmod +x /etc/nginx/start.sh
+#TODO: WA
 EXPOSE 8101
 CMD "/etc/nginx/start.sh"

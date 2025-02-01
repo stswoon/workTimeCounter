@@ -4,7 +4,7 @@ import {execSync} from "child_process";
 import fs from "node:fs";
 
 const addCommitToServiceWorker = () => {
-    let gitHash = process.env.SOURCE_COMMIT; //coolify do not contain .git folder, so https://coolify.io/docs/knowledge-base/environment-variables/
+    let gitHash = process.env.SOURCE_COMMIT; //TODO: env var not works coolify do not contain .git folder, so https://coolify.io/docs/knowledge-base/environment-variables/
     console.log("SOURCE_COMMIT:", gitHash);
     if (!gitHash) {
         gitHash = execSync("git rev-parse HEAD").toString().trim();
