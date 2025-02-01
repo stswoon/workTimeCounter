@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:prod": "tsc -b && vite build && npm run lint",
-    "build": "tsc -b && vite build",
+    "build:prod": "npm run build && npm run lint",
+    "build": "tsc -b && vite build && npm run macros",
+    "macros": "node build.helper.mjs",
     "lint": "eslint ."
   },
   "dependencies": {
