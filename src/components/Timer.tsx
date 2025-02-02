@@ -37,7 +37,7 @@ const Timer: FC<TimerProps> = (props) => {
     }, [props]);
 
     return (
-        <Stack spacing={1}>
+        <Stack spacing={2}>
             <Stack direction='row' spacing={1} sx={{justifyContent: "space-between"}}>
                 <TextField size='small' variant="outlined" placeholder='Timer name' value={props.name}
                            sx={{width: '100px'}}
@@ -52,13 +52,13 @@ const Timer: FC<TimerProps> = (props) => {
                 </Box>
             </Stack>
 
-            <Stack direction='row' spacing={1}>
+            <Stack direction='row' spacing={2}>
                 <Button variant="contained" onClick={() => props.onTimeChange(-60)}>-1h</Button>
                 <Button variant="contained" onClick={() => props.onTimeChange(-15)}>-15'</Button>
                 <Button variant="contained" onClick={() => props.onTimeChange(-5)}>-5'</Button>
             </Stack>
 
-            <Stack direction='row' spacing={1} sx={{justifyContent: "right"}}>
+            <Stack direction='row' spacing={2} sx={{justifyContent: "right"}}>
                 <Button variant="contained" onClick={() => props.onTimeChange(+5)}>+5'</Button>
                 <Button variant="contained" onClick={() => props.onTimeChange(+15)}>+15'</Button>
                 <Button variant="contained" onClick={() => props.onTimeChange(+60)}>+1h</Button>
