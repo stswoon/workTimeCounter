@@ -3,13 +3,12 @@ import {FC, memo, useCallback, useEffect, useMemo, useState} from "react";
 import {TimerModel} from "../models/timer.model.ts";
 import {Box, Button, Divider, Stack} from "@mui/material";
 import {v4 as uuidv4} from 'uuid';
-import {randomColor} from "../helpers/uniqueTimerName.helper.ts";
 import {getWorkTimeCounterData, saveWorkTimeCounterData} from "../helpers/localStorage.helper.ts";
 
 
-const createTimer = (): TimerModel => {
+const createTimer = (index: number): TimerModel => {
     return {
-        name: "Timer " + randomColor(),
+        name: "Timer " + index,
         time: 0,
         id: uuidv4()
     }
@@ -17,14 +16,13 @@ const createTimer = (): TimerModel => {
 
 const MAX_TIMERS = 3;
 
-
 const TimerManager: FC = () => {
     const [timerModels, setTimerModels] = useState<TimerModel[]>([]);
 
     useEffect(() => {
         let workTimeCounterData = getWorkTimeCounterData();
         if (!workTimeCounterData) {
-            workTimeCounterData = {timers: [createTimer()]};
+            workTimeCounterData = {timers: [createTimer(1)]};
         }
         setTimerModels(workTimeCounterData.timers);
         saveWorkTimeCounterData(workTimeCounterData);
@@ -66,7 +64,7 @@ const TimerManager: FC = () => {
     }, [saveToLocalStorage, timerModels]);
 
     const addNewTimer = useCallback(() => {
-        const newTimerModels = [...timerModels, createTimer()];
+        const newTimerModels = [...timerModels, createTimer(timerModels.length + 1)];
         setTimerModels(newTimerModels);
         saveToLocalStorage(newTimerModels);
     }, [saveToLocalStorage, timerModels]);
@@ -76,12 +74,13 @@ const TimerManager: FC = () => {
     }, [timerModels.length])
 
     return (
-        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>} width="384px">
-            {timerModels.map(({id, name, time}) => (
-                <Timer key={id} id={id} name={name} time={time}
-                       onNameChange={(name) => setTimerName(id, name)}
-                       onTimeChange={(time) => setTimerTime(id, time)}
-                       onRemove={() => removeTimer(id)}
+        <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>} width="352px">
+            {timerModels.map((timerModel) => (
+                <Timer key={timerModel.id}
+                       id={timerModel.id} name={timerModel.name} time={timerModel.time}
+                       onNameChange={(name) => setTimerName(timerModel.id, name)}
+                       onTimeChange={(time) => setTimerTime(timerModel.id, time)}
+                       onRemove={() => removeTimer(timerModel.id)}
                 />
             ))}
             {displayAddButton &&
