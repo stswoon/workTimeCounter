@@ -1,11 +1,7 @@
-import {FC, PropsWithChildren, ReactElement} from 'react'
+import {FC, memo, PropsWithChildren} from 'react'
 import {Box} from "@mui/material";
 
-interface AppLayoutProps extends PropsWithChildren {
-    children: ReactElement
-}
-
-export const AppLayout: FC<AppLayoutProps> = ({children}) => {
+const AppLayout: FC<PropsWithChildren> = ({children}) => {
     return <Box sx={{
         minWidth: "340px",
         width: "100vw",
@@ -19,3 +15,5 @@ export const AppLayout: FC<AppLayoutProps> = ({children}) => {
         {children}
     </Box>
 }
+
+export default memo(AppLayout);

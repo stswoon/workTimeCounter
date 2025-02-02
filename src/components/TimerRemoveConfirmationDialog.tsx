@@ -1,5 +1,6 @@
 import {FC, memo} from "react";
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText} from "@mui/material";
+import {strings} from "../constants/strings.ts";
 
 interface TimerRemoveConfirmationDialogProps {
     open: boolean;
@@ -16,12 +17,17 @@ const TimerRemoveConfirmationDialog: FC<TimerRemoveConfirmationDialogProps> = (p
             >
                 <DialogContent>
                     <DialogContentText>
-                        Are you sure you want to remove timer <b>{props.timerName}</b>?
+                        {strings.removeDialog.text} <b>{props.timerName}</b>?
                     </DialogContentText>
                 </DialogContent>
+
                 <DialogActions>
-                    <Button onClick={() => props.onClose(false)}>Cancel</Button>
-                    <Button color="error" onClick={() => props.onClose(true)} autoFocus>Remove</Button>
+                    <Button onClick={() => props.onClose(false)}>
+                        {strings.removeDialog.cancelButton}
+                    </Button>
+                    <Button color="error" onClick={() => props.onClose(true)}
+                            autoFocus>{strings.removeDialog.okRemoveButton}
+                    </Button>
                 </DialogActions>
             </Dialog>
         </>

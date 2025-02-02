@@ -4,11 +4,12 @@ import {TimerModel} from "../models/timer.model.ts";
 import {Box, Button, Divider, Stack} from "@mui/material";
 import {v4 as uuidv4} from 'uuid';
 import {getWorkTimeCounterData, saveWorkTimeCounterData} from "../helpers/localStorage.helper.ts";
+import {strings} from "../constants/strings.ts";
 
 
 const createTimer = (index: number): TimerModel => {
     return {
-        name: "Timer " + index,
+        name: strings.defaultTimerName + " " + index,
         time: 0,
         id: uuidv4()
     }
@@ -75,17 +76,17 @@ const TimerManager: FC = () => {
 
     return (
         <Stack spacing={4} divider={<Divider orientation="horizontal" flexItem/>} width="352px">
-            {timerModels.map((timerModel) => (
-                <Timer key={timerModel.id}
-                       id={timerModel.id} name={timerModel.name} time={timerModel.time}
-                       onNameChange={(name) => setTimerName(timerModel.id, name)}
-                       onTimeChange={(time) => setTimerTime(timerModel.id, time)}
-                       onRemove={() => removeTimer(timerModel.id)}
+            {timerModels.map(({id, name, time}) => (
+                <Timer key={id}
+                       id={id} name={name} time={time}
+                       onNameChange={(name) => setTimerName(id, name)}
+                       onTimeChange={(time) => setTimerTime(id, time)}
+                       onRemove={() => removeTimer(id)}
                 />
             ))}
             {displayAddButton &&
                 <Box sx={{display: "flex", justifyContent: "center"}}>
-                    <Button variant="outlined" onClick={() => addNewTimer()}>Add Timer</Button>
+                    <Button variant="outlined" onClick={() => addNewTimer()}>{strings.addTimer}</Button>
                 </Box>
             }
         </Stack>

@@ -1,10 +1,14 @@
 import TimerManager from "./components/TimerManager.tsx";
-import {AppLayout} from "./components/AppLayout.tsx";
+import AppLayout from "./components/AppLayout.tsx";
+import {ThemeProvider} from "@mui/material";
+import theme from "./constants/theme.ts";
 
 const App = () => (
-    <AppLayout>
-        <TimerManager/>
-    </AppLayout>
+    <ThemeProvider theme={theme}>
+        <AppLayout>
+            <TimerManager/>
+        </AppLayout>
+    </ThemeProvider>
 );
 
 export default App
