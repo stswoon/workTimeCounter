@@ -3,34 +3,34 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 ul,
 ol {
-    list-style: none;
+  list-style: none;
 }
 
 img,
 picture {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
 
 input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 /* Make sure textarea without a rows attribute are not tiny */
 textarea:not([rows]) {
-    min-height: 10em;
+  min-height: 10em;
 }
 
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
-    scroll-margin-block: 5ex;
+  scroll-margin-block: 5ex;
 }

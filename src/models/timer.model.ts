@@ -1,9 +1,9 @@
 export interface WorkTimeCounterDataModel {
-    timers: TimerModel[];
+  timers: TimerModel[];
 }
 
 export interface TimerModel {
-    id: string;
-    name: string;
-    time: number;
+  id: string;
+  name: string;
+  time: number;
 }
