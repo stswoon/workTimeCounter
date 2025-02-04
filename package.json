@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:prod": "npm run build && npm run lint",
+    "build:prod": "npm run build && npm run lint && npm run prettier",
     "build": "tsc -b && vite build && npm run macros",
     "macros": "node build.helper.mjs",
     "lint": "eslint .",
@@ -44,6 +44,6 @@
     "vite": "^6.0.5"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --check --ignore-unknown"
   }
 }
