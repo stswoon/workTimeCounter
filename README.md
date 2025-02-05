@@ -5,3 +5,4 @@ PWA app to count underwear or overspending you life to work in man-days and help
 //TODO
 [] update worker
 [] footer
+[] TODOs
