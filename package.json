@@ -1,7 +1,7 @@
 {
   "name": "worktimecounter",
   "private": true,
-  "version": "0.0.6",
+  "version": "0.0.9",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "prettier:fix": "prettier --write .",
     "prepare": "husky",
     "//patch-version": "npm version patch --force",
-    "patch-version": "node build.helper.mjs"
+    "patch-version": "node build.helper.mjs && git add -A"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
