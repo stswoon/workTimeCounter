@@ -4,7 +4,4 @@ PWA app to count underwear or overspending you life to work in man-days and help
 
 //TODO
 [] update worker
-[] eslint
-[] pretier
-[] macros in vite define
-[] footer + version
+[] footer

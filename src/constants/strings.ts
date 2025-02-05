@@ -13,4 +13,6 @@ export const strings = {
     cancelButton: "Cancel",
     okRemoveButton: "Remove",
   },
+  appName: "Work Time Counter",
+  appV: "v.",
 };
