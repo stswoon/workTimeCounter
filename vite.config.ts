@@ -29,10 +29,10 @@ export default defineConfig({
       },
       minify: false,
       injectRegister: "inline",
-      registerType: "autoUpdate",
+      registerType: "prompt",
       manifest: manifest,
       includeAssets: ["assets/*.woff", "assets/*.woff2"], //TODO
-      selfDestroying: true, //TODO
+      //selfDestroying: true, //TODO
       //strategies: "generateSW"
     }),
   ],
