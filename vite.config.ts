@@ -25,13 +25,15 @@ export default defineConfig({
     react(),
     VitePWA({
       devOptions: {
-        enabled: false,
+        enabled: true,
       },
       minify: false,
       injectRegister: "inline",
       registerType: "autoUpdate",
       manifest: manifest,
       includeAssets: ["assets/*.woff", "assets/*.woff2"], //TODO
+      //selfDestroying: true,
+      //strategies: "generateSW"
     }),
   ],
   build: {
