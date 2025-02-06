@@ -28,7 +28,7 @@ export default defineConfig({
         enabled: true,
       },
       minify: false,
-      injectRegister: "inline",
+      injectRegister: "auto",
       registerType: "prompt",
       manifest: manifest,
       includeAssets: ["assets/*.woff", "assets/*.woff2"], //TODO
