@@ -13,6 +13,10 @@ export const strings = {
     cancelButton: "Cancel",
     okRemoveButton: "Remove",
   },
-  appName: "Work Time Counter",
-  appV: "v.",
+  header: {
+    appName: "Work Time Counter",
+    appV: "v.",
+    seeAlso: "See also:",
+    link: "https://stswoon.github.io",
+  },
 };

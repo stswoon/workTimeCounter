@@ -1,7 +1,7 @@
 {
   "name": "worktimecounter",
   "private": true,
-  "version": "0.0.12",
+  "version": "0.0.15",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "prettier:fix": "prettier --write .",
     "prepare": "husky",
     "//patch-version": "npm version patch --force",
-    "patch-version": "node build.helper.mjs && git add -A"
+    "patch-version": "node build.helper.mjs --updatePatchVersion && git add -A"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -39,6 +39,7 @@
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "minimist": "^1.2.8",
     "prettier": "^3.4.2",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",

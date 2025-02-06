@@ -1,18 +1,28 @@
 import { FC, memo, PropsWithChildren } from "react";
-import { AppBar, Box, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Link, Stack, Toolbar, Typography } from "@mui/material";
 import { strings } from "../constants/strings.ts";
 
 const AppLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <AppBar position="absolute" color="transparent">
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
           <Stack spacing={1} direction="row" alignItems="center">
-            <Typography variant="subtitle1">{strings.appName}</Typography>
+            <Typography variant="subtitle1">
+              {strings.header.appName}
+            </Typography>
             <Typography variant="subtitle2">
-              {strings.appV}
+              {strings.header.appV}
               {__APP_VERSION__}
             </Typography>
+          </Stack>
+          <Stack spacing={1} direction="row" alignItems="center">
+            <Typography variant="subtitle1">
+              {strings.header.seeAlso}
+            </Typography>
+            <Link variant="subtitle2" href={strings.header.link}>
+              {strings.header.link}
+            </Link>
           </Stack>
         </Toolbar>
       </AppBar>

@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import minimist from "minimist";
 
 const updatePatchVersion = () => {
   let packageJson = fs.readFileSync("package.json", "utf8");
@@ -18,5 +19,7 @@ const updatePatchVersion = () => {
   fs.writeFileSync("package-lock.json", packageLockJson, "utf8");
 };
 
-//TODO: env flags
-updatePatchVersion();
+const argv = minimist(process.argv.slice(2));
+if (argv["updatePatchVersion"]) {
+  updatePatchVersion();
+}

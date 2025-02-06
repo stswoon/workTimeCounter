@@ -1,4 +1,10 @@
-import { Button, Stack, Typography, TextField } from "@mui/material";
+import {
+  Button,
+  Stack,
+  Typography,
+  TextField,
+  TypographyOwnProps,
+} from "@mui/material";
 import { FC, memo, useCallback, useMemo, useState } from "react";
 import TimerRemoveConfirmationDialog from "./TimerRemoveConfirmationDialog.tsx";
 import { formatTime } from "../helpers/formatTime.helper.ts";
@@ -19,8 +25,7 @@ const Timer: FC<TimerProps> = (props) => {
     return formatTime(props.time);
   }, [props.time]);
 
-  //TODO mui type
-  const displayTimeColor = useMemo(() => {
+  const displayTimeColor: TypographyOwnProps["color"] = useMemo(() => {
     if (props.time > 0) {
       return "success";
     } else if (props.time < 0) {
