@@ -32,7 +32,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: manifest,
       includeAssets: ["assets/*.woff", "assets/*.woff2"], //TODO
-      //selfDestroying: true,
+      selfDestroying: true, //TODO
       //strategies: "generateSW"
     }),
   ],
