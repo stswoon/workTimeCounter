@@ -1,5 +1,7 @@
 # Work Time Counter
 
+## https://work-time-counter.stswoon.ru
+
 PWA app to count underwear or overspending you life to work in man-days and help you to move it to zero.
 
 [] TODO: updatable service-worker, updates only after close and open new tab but it now works for opened tabs and so for
